@@ -1,175 +1,73 @@
-# Webhook Manager Service
+# ai-agent-standards
 
-A Node.js microservice for reliable webhook delivery with real-time visualization.
+A small repository of shared instructions and conventions for AI coding agents and maintainers.
 
-## Overview
+## What this repo contains
 
-This service handles webhook registration, caching, delivery execution with retry logic, and status tracking. It integrates with RabbitMQ for event notifications and provides a REST API for management operations.
+These files are the main standards for adoption:
 
-## Features
+- `README.md` — this human-readable guide.
+- `instructions.md` — agent behavior and repository-specific instructions.
+- `code-conventions.md` — generation and code style guidance.
+- `cicd-conventions.md` — CI/CD placement and workflow guidance.
+- `commit-conventions.md` — commit message formatting rules.
+- `docs-conventions.md` — documentation and README update guidance.
+- `.gitignore` — example ignore rules for common development artifacts.
 
-- **Webhook Registration**: Register webhooks for specific event types
-- **Redis Caching**: Fast lookup of webhooks by event type
-- **Reliable Delivery**: Exponential backoff retry strategy
-- **Status Tracking**: Comprehensive delivery attempt logging
-- **Real-time Visualization**: p5.js dashboard for monitoring
-- **REST API**: Full CRUD operations for webhook management
+## Why use it
 
-## Architecture
+This repository is designed as a template for projects that want a consistent, modular instruction set for AI agents.
 
-```
-┌─────────────────┐    ┌──────────────┐    ┌─────────────────┐
-│   Event Manager │───▶│   RabbitMQ   │───▶│ Webhook Manager │
-│                 │    │              │    │                 │
-└─────────────────┘    └──────────────┘    └─────────────────┘
-                                                        │
-                                                        ▼
-┌─────────────────┐    ┌──────────────┐    ┌─────────────────┐
-│   PostgreSQL    │◀───│   Status     │    │     Redis      │
-│   Database      │    │   Tracker    │    │     Cache      │
-└─────────────────┘    └──────────────┘    └─────────────────┘
-                                                        │
-                                                        ▼
-┌─────────────────┐    ┌──────────────┐    ┌─────────────────┐
-│   Customer      │◀───│ Delivery     │    │   p5.js        │
-│   Webhooks      │    │ Executor     │    │ Visualization  │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-```
+Use it to keep conventions separate and easy to copy or reference across repositories.
 
-## Architecture Diagram
+## How to use it
 
-The diagram below shows how internal event producers, RabbitMQ, the Webhook Manager, Redis cache, PostgreSQL, and customer endpoints interact.
+### Option 1: Copy files into your project
 
-```mermaid
-graph TD
-    A[Internal Services] -->|Publish Event| B[RabbitMQ]
-    B --> C[Event Manager]
-    C -->|Store Event| D[PostgreSQL]
-    C -->|Notify| E[Webhook Manager]
-    E -->|Lookup Webhooks| F[Redis Cache]
-    F --> E
-    E -->|Execute Delivery| G[Customer Webhook Endpoint]
-    G -->|Response| E
-    E -->|Log Attempt| D
-    H[Customers] -->|Register Webhook| E
-    E -->|Store Webhook| D
-    E -->|Update Cache| F
-```
+Copy the standard files into your project root:
 
-See `architecture-diagram.md` for the standalone diagram file.
-
-## Prerequisites
-
-- Node.js 16+
-- PostgreSQL 12+
-- Redis 6+
-- RabbitMQ 3.8+
-
-## Installation
-
-1. Clone the repository
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Set up environment variables:
-   ```bash
-   cp .env.example .env
-   # Edit .env with your configuration
-   ```
-4. Set up database:
-   ```bash
-   psql -d webhook_db -f schema.sql
-   ```
-
-## Usage
-
-Start the service:
 ```bash
-npm start
+cp /path/to/ai-agent-standards/instructions.md .
+cp /path/to/ai-agent-standards/code-conventions.md .
+cp /path/to/ai-agent-standards/cicd-conventions.md .
+cp /path/to/ai-agent-standards/commit-conventions.md .
+cp /path/to/ai-agent-standards/docs-conventions.md .
+cp /path/to/ai-agent-standards/.gitignore .
 ```
 
-The service will start:
-- API server on port 3000
-- p5.js visualization in browser
-- RabbitMQ event listener
+Then update your local README to point to these files.
 
-## API Endpoints
+### Option 2: Reference this repo
 
-### Webhook Management
-- `POST /webhooks` - Register a webhook
-- `GET /webhooks/:id` - Get webhook details
-- `PUT /webhooks/:id` - Update webhook
-- `DELETE /webhooks/:id` - Deactivate webhook
-- `GET /customers/:customerId/webhooks` - Get customer webhooks
+If you prefer to keep the standard external, add it as a git submodule or template and document any local overrides in your project README.
 
-### Delivery Status
-- `GET /deliveries?event_id={id}` - Get delivery status for event
-- `GET /stats/deliveries` - Get delivery statistics
-- `GET /retries/pending` - Get pending retries
-
-### Health Check
-- `GET /health` - Service health status
-
-## Configuration
-
-Environment variables:
-
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `DB_HOST` | localhost | PostgreSQL host |
-| `DB_PORT` | 5432 | PostgreSQL port |
-| `DB_NAME` | webhook_db | Database name |
-| `DB_USER` | postgres | Database user |
-| `DB_PASSWORD` | password | Database password |
-| `REDIS_HOST` | localhost | Redis host |
-| `REDIS_PORT` | 6379 | Redis port |
-| `RABBITMQ_URL` | amqp://localhost | RabbitMQ connection URL |
-| `PORT` | 3000 | API server port |
-
-## Development
-
-### Project Structure
-```
-├── main.js                 # Service entry point
-├── webhookRegistry.js      # Webhook registration logic
-├── webhookCache.js         # Redis caching layer
-├── deliveryExecutor.js     # HTTP delivery with retries
-├── statusTracker.js        # Delivery status tracking
-├── eventListener.js        # RabbitMQ event consumer
-├── webhookAPI.js           # Express REST API
-├── visualization.js        # p5.js monitoring dashboard
-├── database.js             # PostgreSQL connection
-├── schema.sql              # Database schema
-└── .env.example            # Environment configuration
+```bash
+git submodule add <repo-url> ai-agent-standards
 ```
 
-### Key Components
+## Example usage
 
-- **WebhookRegistry**: Manages webhook CRUD operations
-- **WebhookCache**: Redis-based caching for performance
-- **DeliveryExecutor**: Handles HTTP calls with exponential backoff
-- **StatusTracker**: Logs all delivery attempts and metrics
-- **EventListener**: Consumes events from RabbitMQ
-- **WebhookAPI**: REST API for external interactions
-- **Visualization**: Real-time monitoring dashboard
+A project can adopt this standard by placing the root convention files in its repository and using them as the source of truth for AI agent behavior.
 
-## Reliability Features
+Example project structure after adoption:
 
-- **At-least-once delivery** through message acknowledgments
-- **Idempotent processing** with unique event IDs
-- **Exponential backoff** retry strategy (5 attempts max)
-- **Circuit breaker** pattern for failing webhooks
-- **Comprehensive logging** for debugging and monitoring
+```text
+my-project/
+  README.md
+  instructions.md
+  code-conventions.md
+  cicd-conventions.md
+  commit-conventions.md
+  docs-conventions.md
+  .gitignore
+```
 
-## Monitoring
+### Example workflow
 
-The service provides:
-- Real-time delivery metrics via p5.js visualization
-- REST API endpoints for statistics
-- Structured logging for all operations
-- Health check endpoints
+1. Copy the standard files into your project.
+2. Reference `instructions.md` in your project README.
+3. Update `README.md` whenever you change `instructions.md` or any convention file.
 
-## License
+## Keep this repo in sync
 
-ISC
+When you update the standard files, update this `README.md` alongside them so adopters always see the latest guidance.
