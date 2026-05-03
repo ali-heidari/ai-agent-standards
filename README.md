@@ -71,3 +71,28 @@ my-project/
 ## Keep this repo in sync
 
 When you update the standard files, update this `README.md` alongside them so adopters always see the latest guidance.
+
+## Suggested prompt
+
+To use these repository, you can simply give this prompt to your agent.
+
+```
+You are writing AI agent guidance for a new project. Use the `ai-agent-standards` repository as the base standard.
+
+Create a project-specific instructions file named `instructions.md` in this repository root. It should:
+- explain the project purpose and key files
+- point to the shared base standards:
+  - `README.md`
+  - `instructions.md`
+- preserve the core rule: do not invent build or CI steps unless explicit manifest/build files exist in this repo
+- include a short “How to use these standards” section with either:
+  - copy files into the project root, or
+  - reference `ai-agent-standards` as a submodule/template
+
+Example wording:
+> This project adopts the `ai-agent-standards` template. Use those files as the base conventions for code generation, CI guidance, commit format, and docs policy.
+
+Also create or update this repo’s local `README.md` to document that it follows `ai-agent-standards` and where to find the shared standard files.
+
+Do not add unrelated content. Keep the instructions concise, specific, and practical.
+```
