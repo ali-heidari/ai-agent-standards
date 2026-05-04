@@ -12,7 +12,7 @@ These files are the main standards for adoption:
 - `cicd-conventions.md` — CI/CD placement and workflow guidance.
 - `commit-conventions.md` — commit message formatting rules.
 - `docs-conventions.md` — documentation and README update guidance.
-- `.gitignore` — example ignore rules for common development artifacts.
+- `repository.md` — repository essentials guidance.
 
 ## Why use it
 
@@ -32,7 +32,7 @@ cp /path/to/ai-agent-standards/code-conventions.md .
 cp /path/to/ai-agent-standards/cicd-conventions.md .
 cp /path/to/ai-agent-standards/commit-conventions.md .
 cp /path/to/ai-agent-standards/docs-conventions.md .
-cp /path/to/ai-agent-standards/.gitignore .
+cp /path/to/ai-agent-standards/repository.md .
 ```
 
 Then update your local README to point to these files.
@@ -59,7 +59,7 @@ my-project/
   cicd-conventions.md
   commit-conventions.md
   docs-conventions.md
-  .gitignore
+  repository.md
 ```
 
 ### Example workflow
@@ -74,10 +74,24 @@ When you update the standard files, update this `README.md` alongside them so ad
 
 ## Suggested prompt
 
-This repository includes a reusable prompt file for repository essentials checks:
+Use this prompt in your consuming project to update the local AI agent instructions file. The agent should use `instructions.md` from this repository as the base instruction set.
+
+```
+You are updating the main AI agent instructions file for this project. Use `instructions.md` from the ai-agent-standards repository as the base standard.
+
+Update the project's main instructions file (typically copilot-instructions.md or the equivalent file for other AI agents) so that it:
+- explains the project purpose and key files,
+- references `instructions.md` as the canonical base instructions,
+- preserves the core rule: do not invent build or CI steps unless explicit manifest/build files exist in this repo,
+- includes a short "How to use these standards" section with either:
+  - copy files into the project root, or
+  - reference ai-agent-standards as a submodule/template.
+
+Also add or update the project README to document that it follows `ai-agent-standards` and where to find the shared standard files.
+
+Do not add unrelated content. Keep the instructions concise, specific, and practical.
+```
+
+This repository also includes a reusable prompt file for repository readiness checks:
 
 - `repository.md`
-
-Use `instructions.md` as the base instructions file for consuming projects, and keep other files here as optional support documents.
-
-When you want a developer-facing checklist for repository readiness, use the prompt in `repository.md`.
