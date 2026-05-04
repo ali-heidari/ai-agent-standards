@@ -49,5 +49,9 @@ Questions for maintainers
 - Where will consuming projects keep copies of these files (submodule, template, or manual copy)?
 - Any language-specific ignore patterns or CI templates you want shipped here?
 
+Prompt library
+- This repo includes `repository.md` for developer-facing repository essentials checks.
+- Use `instructions.md` as the single base instruction file for consuming repos; other files in this repository are topic-specific support documents.
+
 If you update this file
 - Update `README.md` concurrently to reflect the change.
