@@ -38,12 +38,12 @@ Agent behavior rules (concrete)
 
 Files to inspect first
 - `README.md`
-- `LICENSE`
 - `instructions.md`
 - `code-conventions.md`
 - `cicd-conventions.md`
 - `commit-conventions.md`
 - `docs-conventions.md`
+- `repository.md`
 
 Questions for maintainers
 - Where will consuming projects keep copies of these files (submodule, template, or manual copy)?
