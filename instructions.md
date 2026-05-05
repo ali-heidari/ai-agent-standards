@@ -10,9 +10,11 @@ Big picture
 
 Modular conventions
 - Read `code-conventions.md` for code generation and agent behavior rules.
+- Read `assistant-conventions.md` for interactive agent workflow and developer collaboration conventions.
 - Read `cicd-conventions.md` for CI/CD placement, workflow conventions, and repo structure.
 - Read `commit-conventions.md` for commit message format.
 - Read `docs-conventions.md` for documentation and README update rules.
+- Read `repository-conventions.md` for repository essentials guidance and suggestion to make repository standard.
 
 When editing this repo
 - Preserve the top-level README and update the standards files when conventions change.
@@ -39,18 +41,19 @@ Agent behavior rules (concrete)
 Files to inspect first
 - `README.md`
 - `instructions.md`
+- `assistant-conventions.md`
 - `code-conventions.md`
 - `cicd-conventions.md`
 - `commit-conventions.md`
 - `docs-conventions.md`
-- `repository.md`
+- `repository-conventions.md`
 
 Questions for maintainers
 - Where will consuming projects keep copies of these files (submodule, template, or manual copy)?
 - Any language-specific ignore patterns or CI templates you want shipped here?
 
 Prompt library
-- This repo includes `repository.md` for developer-facing repository essentials checks.
+- This repo includes `repository-conventions.md` for developer-facing repository essentials checks.
 - Use `instructions.md` as the single base instruction file for consuming repos; other files in this repository are topic-specific support documents.
 
 If you update this file

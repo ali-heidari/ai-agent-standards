@@ -8,11 +8,12 @@ These files are the main standards for adoption:
 
 - `README.md` — this human-readable guide.
 - `instructions.md` — agent behavior and repository-specific instructions.
+- `assistant-conventions.md` — interactive collaboration and step-by-step agent workflow.
 - `code-conventions.md` — generation and code style guidance.
 - `cicd-conventions.md` — CI/CD placement and workflow guidance.
 - `commit-conventions.md` — commit message formatting rules.
 - `docs-conventions.md` — documentation and README update guidance.
-- `repository.md` — repository essentials guidance.
+- `repository-conventions.md` — repository essentials guidance.
 
 ## Why use it
 
@@ -28,11 +29,12 @@ Copy the standard files into your project root:
 
 ```bash
 cp /path/to/ai-agent-standards/instructions.md .
+cp /path/to/ai-agent-standards/assistant-conventions.md .
 cp /path/to/ai-agent-standards/code-conventions.md .
 cp /path/to/ai-agent-standards/cicd-conventions.md .
 cp /path/to/ai-agent-standards/commit-conventions.md .
 cp /path/to/ai-agent-standards/docs-conventions.md .
-cp /path/to/ai-agent-standards/repository.md .
+cp /path/to/ai-agent-standards/repository-conventions.md .
 ```
 
 Then update your local README to point to these files.
@@ -59,7 +61,7 @@ my-project/
   cicd-conventions.md
   commit-conventions.md
   docs-conventions.md
-  repository.md
+  repository-conventions.md
 ```
 
 ### Example workflow
@@ -94,4 +96,4 @@ Do not add unrelated content. Keep the instructions concise, specific, and pract
 
 This repository also includes a reusable prompt file for repository readiness checks:
 
-- `repository.md`
+- `repository-conventions.md`
