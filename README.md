@@ -81,6 +81,8 @@ Use this prompt in your consuming project to update the local AI agent instructi
 ```
 You are updating the main AI agent instructions file for this project. Use `instructions.md` from the ai-agent-standards repository as the base standard.
 
+Here is the ai-agent-standards address: https://github.com/ali-heidari/ai-agent-standards
+
 Update the project's main instructions file (typically copilot-instructions.md or the equivalent file for other AI agents) so that it:
 - explains the project purpose and key files,
 - references `instructions.md` as the canonical base instructions,
