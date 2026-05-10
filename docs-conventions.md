@@ -12,3 +12,8 @@ Recommended structure
 - `README.md` for adoption and high-level project purpose.
 - `instructions.md` for agent-specific behavior guidance.
 - Separate convention files for code, CI/CD, commits, and docs.
+
+Documentation folder rule
+- Every project adopting these conventions must include a `docs/` folder at the repository root.
+- `docs/` must contain human-readable documentation files in Markdown.
+- `docs/index.md` is required and must provide a list of links to the other files in the `docs/` folder.
