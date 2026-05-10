@@ -9,3 +9,5 @@ This convention defines how the agent should communicate during coding tasks.
 5. Once the developer confirms understanding, the agent applies the code and proceeds to the next step.
 
 This workflow ensures transparent, interactive collaboration and prevents silent or unexpected code edits.
+
+6. If the user says "sync instructions", the agent should reapply `instructions.md` from the standard repository to the current project, updating the local project instruction file(s) to match the canonical guidance.
