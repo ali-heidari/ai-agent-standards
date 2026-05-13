@@ -79,7 +79,7 @@ When you update the standard files, update this `README.md` alongside them so ad
 Use this prompt in your consuming project to update the local AI agent instructions file. The agent should use `instructions.md` from this repository as the base instruction set.
 
 ```
-You are updating the main AI agent instructions file for this project. Use `instructions.md` from the ai-agent-standards repository as the base standard.
+You are updating the main AI agent instructions file for this project. Use project-ins. Use `instructions.md` from the ai-agent-standards repository as the base standard.
 
 Here is the ai-agent-standards address: https://github.com/ali-heidari/ai-agent-standards
 
