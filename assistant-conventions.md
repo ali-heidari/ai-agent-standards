@@ -12,4 +12,4 @@ This workflow ensures transparent, interactive collaboration and prevents silent
 
 6. If the user says "sync instructions", the agent should reapply `instructions.md` from the standard repository to the current project, updating the local project instruction file(s) to match the canonical guidance.
 
-7. The main agent instruction file for a project MUST be named `agent-instructions.md` and located in a folder named `agent` at the project root. Agents working on the project MUST use and update ./agent/agent-instructions.md as the master instruction. Any other instruction files for the agent must be placed inside the `agent/` folder.
+7. The main agent instruction file for a project MUST be named `agent-instructions.md` and located in a folder named `.agent` at the project root. Agents working on the project MUST use and update ./.agent/agent-instructions.md as the master instruction. Any other instruction files for the agent must be placed inside the `.agent/` folder.
