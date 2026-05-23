@@ -2,6 +2,9 @@
 
 A small repository of shared instructions and conventions for AI coding agents and maintainers.
 
+> **Warning — Use at your own risk.**
+> These instructions are designed to be adopted into other projects. Before applying them, review each convention file carefully and verify that they do not conflict with or silently override your project's existing agent instructions. The `sync instructions` command will overwrite matching sections in your `.agent/agent-instructions.md`. Always keep a backup of your current instructions before syncing.
+
 ## What this repo contains
 
 These files are the main standards for adoption:
