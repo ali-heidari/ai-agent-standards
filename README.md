@@ -74,27 +74,66 @@ my-project/
 
 When you update the standard files, update this `README.md` alongside them so adopters always see the latest guidance.
 
-## Suggested prompt
+## Setup prompt (for new or existing projects)
 
-Use this prompt in your consuming project to update the local AI agent instructions file. The agent should use `instructions.md` from this repository as the base instruction set.
+Use this prompt in any project (new, empty, or under development) to enforce ai-agent-standards. This prompt will merge ai-agent-standards with your project's existing instructions if they exist, flagging conflicts for you to resolve.
+
+**COPY AND USE EXACTLY:**
 
 ```
-You are updating the main AI agent instructions file for this project. Use project-ins. Use `instructions.md` from the ai-agent-standards repository as the base standard.
+**SETUP: Enforce ai-agent-standards for this project**
 
-Here is the ai-agent-standards address: https://github.com/ali-heidari/ai-agent-standards
+You are integrating ai-agent-standards (https://github.com/ali-heidari/ai-agent-standards) into this project.
 
-Update the project's main instructions file (typically copilot-instructions.md or the equivalent file for other AI agents) so that it:
-- explains the project purpose and key files,
-- references `instructions.md` as the canonical base instructions,
-- preserves the core rule: do not invent build or CI steps unless explicit manifest/build files exist in this repo,
-- includes a short "How to use these standards" section with either:
-  - copy files into the project root, or
-  - reference ai-agent-standards as a submodule/template.
+**Step 1: Detect existing instructions**
+Check if this project has existing instructions files (instructions.md, .instructions.md, copilot-instructions.md, or similar).
 
-Also add or update the project README to document that it follows `ai-agent-standards` and where to find the shared standard files.
+If NO existing instructions found:
+- Copy `instructions.md` from ai-agent-standards into this project root: https://github.com/ali-heidari/ai-agent-standards/blob/main/instructions.md
+- Skip to Step 3
 
-Do not add unrelated content. Keep the instructions concise, specific, and practical.
+If YES, existing instructions found:
+- Proceed to Step 2
+
+**Step 2: Merge and resolve conflicts**
+Compare the existing project instructions with ai-agent-standards/instructions.md. For each difference:
+1. Show me the conflict (which rule exists in both, but differs)
+2. Show the ai-agent-standards version
+3. Show the project's existing version
+4. Ask me: "Which rule do you want to use?" (project's explicit rule should generally win, but you're asking for confirmation)
+
+After all conflicts are identified and resolved, merge both files into a final `instructions.md` that:
+- Includes ai-agent-standards rules as the base
+- Preserves all of the project's explicit rules (especially those that won differently from ai-agent-standards)
+- Clearly documents which rules are project-specific overrides
+
+**Step 3: Ensure all referenced files exist**
+The `instructions.md` file references other convention files. Ensure they exist in this project (copy from ai-agent-standards or indicate they should be added):
+- Check if any convention files mentioned in instructions.md are missing
+- Ask me if you should copy them from ai-agent-standards
+
+**Step 4: Update project README**
+Add or update a section in this project's README:
+```markdown
+## Standards and Conventions
+
+This project follows [ai-agent-standards](https://github.com/ali-heidari/ai-agent-standards) for AI agent behavior and conventions, with project-specific overrides documented in `instructions.md`.
 ```
+
+**Step 5: Confirm completion**
+- [ ] `instructions.md` exists and contains merged rules (ai-agent-standards + project overrides)
+- [ ] All referenced convention files exist or are noted as missing
+- [ ] README documents ai-agent-standards adoption
+- [ ] All conflicts have been reviewed and resolved
+
+Reply with: "✓ Setup complete: [list any project-specific overrides]"
+
+Once confirmed, this project will follow ai-agent-standards rules, with your explicit rules taking priority where defined.
+```
+
+### After setup is complete
+
+All subsequent AI agent work in that project will automatically follow ai-agent-standards rules, with the project's explicit rules taking priority where they exist.
 
 This repository also includes a reusable prompt file for repository readiness checks:
 
